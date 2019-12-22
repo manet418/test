@@ -26,5 +26,35 @@ class data_model extends CI_model {
     	$query=$this->db->query($sql);
 		return $query->result_array();
 	}
+
+function insert_news($title,$text,$data)
+	{
+		$sql='insert into news(title,text,date)
+		values("'.$title.'","'.$text.'","'.$data.'")';
+		$query=$this->db->query($sql);
+	}
+	function show_news()
+	{
+		$sql='select * from news';
+    	$query=$this->db->query($sql);
+		return $query->result_array();
+		
+	}
+	function delete_news($id)
+	{
+		$sql='delete  from  news where id='.$id;
+    	$query=$this->db->query($sql);
+	}
+	function edit_news($id)
+	{
+		$sql='select * from  news where id='.$id;
+    	$query=$this->db->query($sql);
+		return $query->result_array();
+	}
+	function final_edit_news($id,$title,$text,$data)
+	{
+		$sql='update news set title="'.$title.'",text="'.$text.'",date="'.$data.'" where id='.$id;
+		$query=$this->db->query($sql);
+	}
 	
 }

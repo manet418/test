@@ -1,4 +1,4 @@
-
+﻿
 
 <?php
 session_start();
@@ -92,6 +92,64 @@ class uni extends CI_Controller {
 	{
 		$data['info']=$this->data_model->show_course_list();
 		$this->load->view('show_course_list',$data);
+	}
+
+function news_page()
+	{
+		$data['test']=0;
+		$this->load->view('news.php',$data);
+	}
+	function insert_news_page()
+	{
+		$this->load->view('insert_news.php');
+	}
+	function insert_news()
+	{
+		//---------------------------------------------------------------------------------
+		$this->load->library('form_validation');
+		//<!-----------------rule------------------>
+		$this->form_validation->set_rules('title','عنوان خبر', 'required');
+		$this->form_validation->set_rules('text','متن خبر','required');
+		$this->form_validation->set_rules('data','تاریخ خبر','required');
+		//------------------message-----------------
+		$this->form_validation->set_message('required', 'پربودن فیلد %s اجباری است ');
+		
+		//--------------------checking------------
+		if ($this->form_validation->run() == FALSE)
+		{
+			
+			$this->load->view('insert_news.php');
+		}
+		else
+		{
+		$this->data_model->insert_news($_POST['title'],$_POST['text'],$_POST['data']);
+		$data['test']=1;
+		$this->load->view('news.php',$data);
+		}
+	}
+	function edit_news_page()
+	{
+		$data['info']=$this->data_model->show_news();
+		$this->load->view('edit_news_page.php',$data);
+	}
+	function delete_news($id)
+	{
+		$this->data_model->delete_news($id);
+		$data['info']=$this->data_model->show_news();
+		$this->load->view('edit_news_page.php',$data);
+		
+		
+	}
+	function edit_news($id)
+	{
+		$data['info']=$this->data_model->edit_news($id);
+		$this->load->view('edit.php',$data);
+	}
+	function final_edit_news($id)
+	{
+		$this->data_model->final_edit_news($id,$_POST['title'],$_POST['text'],$_POST['data']);
+		$data['info']=$this->data_model->show_news();
+		$this->load->view('edit_news_page.php',$data);
 	}
 	
 	
