@@ -1,5 +1,3 @@
-
-
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class data_model extends CI_model {
@@ -9,9 +7,6 @@ class data_model extends CI_model {
 		$query=$this->db->query($sql);
 		return $query->result_array();	
 	}
-	
-	
-	
 	function save_course($course_name,$teacher_name,$class_time,$exam_time,$max)
 	{
 		$sql='insert into course(course_name,teacher_name,class_time,exam_time,max)
@@ -26,8 +21,27 @@ class data_model extends CI_model {
     	$query=$this->db->query($sql);
 		return $query->result_array();
 	}
-
-function insert_news($title,$text,$data)
+	function give_course($pw,$id)
+	{
+		$sql='insert into student_course(student_pass,course_id)
+		values('.$pw.','.$id.')';
+		$query=$this->db->query($sql);
+	}
+	function visit_saved_course($pass)
+	{
+		$sql='select * from  student_course where student_pass='.$pass;
+    	$query=$this->db->query($sql);
+		return $query->result_array();
+		
+	}
+	function  visit_course($id)
+	{
+		$sql='select * from  course where id='.$id;
+    	$query=$this->db->query($sql);
+		return $query->result_array();
+		
+	}
+	function insert_news($title,$text,$data)
 	{
 		$sql='insert into news(title,text,date)
 		values("'.$title.'","'.$text.'","'.$data.'")';

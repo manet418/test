@@ -1,10 +1,9 @@
-﻿
-
 <?php
 session_start();
  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class uni extends CI_Controller {
+	
 	function index()
 	{
 		$this->load->view('userlogin.php');	
@@ -39,29 +38,28 @@ class uni extends CI_Controller {
 				if($row['user_name']=='headmaster')
 				$this->load->view('headmaster.php',$data);
 				
-				
+				if($row['user_name']=='student')
+			   {
+	            //لاگین به صفحه دانشجو
+				$data['news']=$this->data_model->show_news();  
+				$this->load->view('student.php',$data);
+			   }
 				
 			}
 			
 		}
 		
 		}
-		
 	}//end chek login
-	
-	
 	function return_master()
 	{
 	$this->load->view('headmaster.php');}
-//	function show_news()
-//	{$this->load->view('food.php');}
+	function show_news()
+	{$this->load->view('food.php');}
 	function heaadmaster_list()
 	{$info['test']=0;
 	$this->load->view('heaadmaster_list',$info);}
 	//ذخیره دروس توسط مدیر گروه
-	
-	
-	
 	function save_course()
 	{
 	//	--------------------------------------------------------------------------------------------------------------
@@ -93,8 +91,58 @@ class uni extends CI_Controller {
 		$data['info']=$this->data_model->show_course_list();
 		$this->load->view('show_course_list',$data);
 	}
-
-function news_page()
+	//نمایش دروس ذخیره شده برای دانشجو
+	function show_course($pass)
+	{
+		$data['news']=$this->data_model->show_news();
+		$data['pass']=$pass;
+		$data['info']=$this->data_model->show_course_list();
+		$data['test']=0;
+		$this->load->view('show_student_cource',$data);
+		
+	}//اخذ درس
+	function give_course($pw,$id)
+	{
+		
+	   $this->data_model->give_course($pw,$id);
+	   $data['pass']=$pw;
+		$data['info']=$this->data_model->show_course_list();
+		$data['test']=1;
+		$this->load->view('show_student_cource',$data);
+		
+	}//بازگشت به میز کار
+	function return_student($info)
+	{
+		$data['news']=$this->data_model->show_news();
+		$t['user_pass']=$info;
+		$s['user_pass']=$t;
+		$data['info']=$s;
+	$this->load->view('student.php',$data);
+	}
+	//مشاهده دروس اخذ شده توسط دانشجو
+	function visit_saved_course($pass)
+	{
+		
+		$t['student_pass']=$pass;
+		$s['student_pass']=$t;
+		$data['info']=$s;
+	  $data['info']=$this->data_model-> visit_saved_course($pass);
+	  $this->load->view('visit_saved_course.php',$data);
+	}
+	//نشان دادن جزییات دروس به دانشجو
+	function visit_course($pw,$id)
+	{
+		
+		
+		$t['student_pass']=$pw;
+		$data['pass']=$t;
+		$data['info']=$this->data_model-> visit_course($id);
+		$this->load->view('visit.php',$data);
+		
+		
+	}
+	//صفحه اخبار برای مدیر گروه
+	function news_page()
 	{
 		$data['test']=0;
 		$this->load->view('news.php',$data);
@@ -154,4 +202,3 @@ function news_page()
 	
 	
 }
-

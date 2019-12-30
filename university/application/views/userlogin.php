@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -26,7 +26,6 @@
     <td height="94" colspan="2" bgcolor="#CCCCCC"><input height="100" width="100" type="submit" name="button" id="button" value="ورود به سامانه" /></td>
   </tr>
 </table>
-<p style="direction:rtl">اینجا با زدن نام کاربری و پسورد به سیستم لاگین میکنید که دوقسمت مدیر گروه و دانشجو وجود دارد مدیر گروه درس هارا ارایه میکند و اخبار مربوط به دانشگاه را درج میکند هر دانشجو در صفحه خود میتواند دروسی که ارایه شده اخذ کند و ببیند واخبار به صورت خودکار در صفحه دانشجو وجود دارد .یک مدیر گروه وچند دانشجو وجود دارد که نام کاربری و پسورد در جدول لاگین قرار دارد .(نام کاربری سطح دسترسی که مثلا برای دانشجو ها studentوبرای مدیر headmasterاست ولی پسورد یکتا ست مثلا مدیر گروه1234ودانشجوها 1478یا 5678یا1234 میتواند باشد البته خوب مسلما رمز ها خیلی ساده هستند و hashنشده در dbذخیره شده و این صرفا جهت تست است)</p>
 <p style="direction:rtl">&nbsp;</p>
 <p style="direction:rtl">&nbsp;</p>
 <p style="direction:rtl">&nbsp;</p>
